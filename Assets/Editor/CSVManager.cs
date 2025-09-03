@@ -48,18 +48,24 @@ public class CSVManager : MonoBehaviour{
         Debug.Log("[CSVManager] CSV 파일 자동 변환이 완료되었습니다.");
     }
     
+    
+    // 새로운 스크립터블 오브젝트 클래스 생성
     private static void GenerateScriptableObjectClass(string soClassName, string[] headers, string[] firstDataRow)
     {
         string classFilePath = $"{soScriptPath}{soClassName}.cs";
         
         // 클래스 폴더가 없으면, 새로 생성
-        if (!Directory.Exists(soScriptPath)) Directory.CreateDirectory(soScriptPath);
+        if (!Directory.Exists(soScriptPath))    Directory.CreateDirectory(soScriptPath);
+
 
         // 이미 클래스 파일이 존재하면, 경고를 띄우고 생성 과정을 건너뜀
-        if (File.Exists(classFilePath)) {
-            Debug.LogWarning($"클래스 {soClassName}이(가) 이미 존재합니다. 스크립트 생성을 건너뜁니다.");
+        if (!File.Exists(classFilePath)) {
+            Debug.Log($"새로운 클래스 {soClassName}를 생성합니다.");            
+        }
+        else {
             return;
         }
+
 
         // 데이터 타입 추론
         string[] dataTypes = InferDataTypes(firstDataRow);
@@ -84,7 +90,7 @@ public class CSVManager : MonoBehaviour{
         Debug.Log($"[CVSManager]새로운 C# 스크립트가 생성되었습니다: {classFilePath}");
     }
 
-    // 주어진 데이터 행을 바탕으로 각 컬럼의 데이터 타입을 추론합니다.
+    // 각 컬럼의 데이터 타입 추론
     private static string[] InferDataTypes(string[] firstDataRow)
     {
         string[] dataTypes = new string[firstDataRow.Length];
@@ -113,7 +119,7 @@ public class CSVManager : MonoBehaviour{
     }
 
     
-    // CSV 데이터를 기반으로 스크립터블 오브젝트 에셋을 생성하거나 업데이트합니다.
+    // 스크립터블 오브젝트 에셋을 생성하거나 업데이트
     private static void CreateOrUpdateSOAssets(string soClassName, string[] headers, string[] lines) {
         // 리플렉션을 사용하여 SO 클래스의 'Type'을 가져옵니다.
         // 이는 새로 생성된 클래스를 런타임에 동적으로 찾기 위함입니다.
