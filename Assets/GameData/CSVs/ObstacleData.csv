@@ -1,0 +1,5 @@
+key,name,scoreIncrease,isDisappear,isOneTimeUse,ballSpeedChange,ballSizeChange,ballCountChange,changeObstacle
+1,normalObstacle,1,TRUE,TRUE,0,0,0,0
+2,addBallCountObstacle,1,TRUE,TRUE,0,0,1,0
+3,addBallSpeedObstacle,1,TRUE,TRUE,2,0,0,0
+4,changeBallSizeObstacle,1,TRUE,TRUE,0,2,0,0
