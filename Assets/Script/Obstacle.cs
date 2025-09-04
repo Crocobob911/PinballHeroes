@@ -20,8 +20,7 @@ public class Obstacle : MonoBehaviour
             if (obstacleData == null) continue;
 
             // 점수 Up
-            BallHitCountManager.AddBallHitCount( obstacleData.scoreIncrease );
-            
+            BallHitCountManager.AddBallHitCount(obstacleData.scoreIncrease);
             Debug.Log(obstacleData.ballSpeedChange +" "+ obstacleData.ballSizeChange +" "+ obstacleData.ballCountChange);
             
             // 공 속도 변화
