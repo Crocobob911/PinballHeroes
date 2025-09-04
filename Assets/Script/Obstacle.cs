@@ -10,10 +10,10 @@ public class Obstacle : MonoBehaviour
     protected virtual void OnCollisionEnter2D(Collision2D col)
     {
         if (!col.gameObject.CompareTag($"Ball")) return;
-        ExecuteAction();
+        ExecuteAction( col );
     }
 
-    private void ExecuteAction()
+    private void ExecuteAction( Collision2D col )
     {
         foreach (var obstacleData in obstacleDatas)
         {
@@ -21,16 +21,23 @@ public class Obstacle : MonoBehaviour
 
             // 점수 Up
             BallHitCountManager.AddBallHitCount(obstacleData.scoreIncrease);
-            Debug.Log(obstacleData.ballSpeedChange +" "+ obstacleData.ballSizeChange +" "+ obstacleData.ballCountChange);
+            BallController ballController = col.gameObject.GetComponent<BallController>();
             
             // 공 속도 변화
-            // Debug.Log(obstacleData.ballSpeedChange);
+            if (obstacleData.addBallSpeed != 0)
+            {
+                ballController.AddBallSpeed( obstacleData.addBallSpeed );
+            }
             
             // 공 크기 변화
-            // Debug.Log(obstacleData.ballSizeChange);
+            if (obstacleData.addBallSize != 0) {
+                ballController.AddBallSize( obstacleData.addBallSize );
+            }
             
             // 공 개수 증가
-            // Debug.Log(obstacleData.ballCountChange);
+            if (obstacleData.addBallCount != 0) {
+                ballController.AddBallCount( obstacleData.addBallCount );
+            }
             
             // 오브젝트 삭제
             if (obstacleData.isDisappear)

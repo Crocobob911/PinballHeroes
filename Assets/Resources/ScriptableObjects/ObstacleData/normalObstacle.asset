@@ -17,7 +17,7 @@ MonoBehaviour:
   scoreIncrease: 1
   isDisappear: 1
   isOneTimeUse: 1
-  ballSpeedChange: 0
-  ballSizeChange: 0
-  ballCountChange: 0
+  addBallSpeed: 0
+  addBallSize: 0
+  addBallCount: 0
   changeObstacle: 0

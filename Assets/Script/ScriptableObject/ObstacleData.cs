@@ -8,8 +8,8 @@ public class ObstacleData : ScriptableObject
     public int scoreIncrease;
     public bool isDisappear;
     public bool isOneTimeUse;
-    public int ballSpeedChange;
-    public int ballSizeChange;
-    public int ballCountChange;
+    public int addBallSpeed;
+    public int addBallSize;
+    public int addBallCount;
     public int changeObstacle;
 }
