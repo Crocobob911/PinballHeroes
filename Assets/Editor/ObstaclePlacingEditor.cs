@@ -12,7 +12,7 @@ namespace Editor
         private const int stageCount = 10;
         
         private int selectedObstacleIdx = 0;
-        private int selectedStageKey = 0;
+        private int selectedLevelKey = 0;
         
         public override void OnInspectorGUI()
         {
@@ -23,22 +23,22 @@ namespace Editor
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Obstacle 설치", EditorStyles.boldLabel);
 
-            string[] stageKeys = new string[ stageCount ];
+            string[] levelKeys = new string[ stageCount ];
             for (int i = 0; i < stageCount; i++)
             {
-                stageKeys[i] = i.ToString();
+                levelKeys[i] = i.ToString();
             }
-            selectedStageKey = EditorGUILayout.Popup("StageKey",selectedStageKey, stageKeys);
+            selectedLevelKey = EditorGUILayout.Popup("LevelKey",selectedLevelKey, levelKeys);
                                
             // Save, Load 버튼
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("Save", GUILayout.Width(120)))
             {
-                SaveObstaclePositions( selectedStageKey );
+                SaveObstaclePositions( selectedLevelKey );
             }
             if (GUILayout.Button("Load", GUILayout.Width(120)))
             {
-                LoadObstaclePositions( selectedStageKey );
+                LoadObstaclePositions( selectedLevelKey );
             }
             GUILayout.EndHorizontal();
             
@@ -63,7 +63,7 @@ namespace Editor
             
             if (GUILayout.Button("장애물 생성", GUILayout.Height(30)))
             {
-                GameObject newObstacle = (GameObject)PrefabUtility.InstantiatePrefab(myTarget.GetRandomObstacle(), myTarget.transform);
+                GameObject newObstacle = (GameObject)PrefabUtility.InstantiatePrefab(myTarget.GetObstacle( selectedObstacleIdx ), myTarget.transform);
 
                 if (newObstacle is not null)
                 {
@@ -77,12 +77,12 @@ namespace Editor
             }
         }
 
-        private void SaveObstaclePositions( int stageKey )
+        private void SaveObstaclePositions( int levelKey )
         {
             
         }
 
-        private void LoadObstaclePositions( int stageKey )
+        private void LoadObstaclePositions( int levelKey )
         {
             
         }

@@ -12,6 +12,12 @@ public class ObstaclePlacingManager : MonoBehaviour
     {
         return obstacles;
     }
+
+    public GameObject GetObstacle(int idx) {
+        return obstacles[idx];
+    }
+    
+    
     public GameObject GetRandomObstacle()
     {
         return obstacles[Random.Range(0, obstacles.Length)];
